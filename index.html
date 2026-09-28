@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>DocuSnap Smart Soundbox</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>DocuSnap Soundbox</h1>
+      <span id="scan-badge" class="badge">Live AI Scanner</span>
+    </header>
+
+    <!-- Top Total Bar & Excel Export -->
+    <div class="stats-box">
+      <div>Total: <strong id="stat-total">₹ 0</strong> | Bills: <strong id="stat-count">0</strong></div>
+      <button id="export-excel-btn" class="mini-btn">📊 Excel CSV</button>
+    </div>
+
+    <!-- Fraud Warning Banner -->
+    <div id="fraud-warning-banner" class="fraud-banner" style="display: none;">
+      ⚠️ Alert: Purana Payment Screenshot Detect Hua Hai!
+    </div>
+
+    <!-- Viewfinder Screen -->
+    <div class="viewfinder-card">
+      <video id="camera-stream" autoplay playsinline></video>
+      <canvas id="photo-canvas" style="display: none;"></canvas>
+      
+      <!-- Target Focus Box -->
+      <div class="scanner-aim-box">
+        <div class="aim-corner tl"></div>
+        <div class="aim-corner tr"></div>
+        <div class="aim-corner bl"></div>
+        <div class="aim-corner br"></div>
+        <span class="aim-text">Amount & Name Target</span>
+      </div>
+
+      <!-- Payment HUD -->
+      <div class="hud-overlay" id="hud-box">
+        <div class="hud-top-row">
+          <div class="hud-merchant" id="live-merchant">Payer: Scanning...</div>
+          <span class="hud-tag" id="live-receiver">Receiver: My Store</span>
+        </div>
+        <div class="hud-amount" id="live-amount">₹ 0.00</div>
+        <div class="hud-status" id="live-status">Target me payment rakhein</div>
+      </div>
+
+      <!-- Actions -->
+      <div class="camera-actions">
+        <button id="torch-toggle-btn" class="cam-action-btn torch-btn" title="Toggle Flashlight">
+          🔦 Torch
+        </button>
+        <button id="instant-pdf-btn" class="cam-action-btn pdf-btn" title="Download PDF">
+          📥 PDF
+        </button>
+        <button id="whatsapp-share-btn" class="cam-action-btn wa-btn" title="Send WhatsApp">
+          💬 WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <!-- Payment List -->
+    <div class="recent-list">
+      <div class="recent-header">
+        <h3>Recent Received Payments</h3>
+        <button id="clear-view-btn" class="text-btn">Refresh</button>
+      </div>
+      <ul id="receipts-container"></ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
